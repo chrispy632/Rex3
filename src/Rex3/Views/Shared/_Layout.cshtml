@@ -1,69 +1,74 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Rex3</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/X_Icon.ico" />
+
+    <title>Account Executive Portal</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />       
+        <link href="~/lib/morris.js/morris.css" rel="stylesheet" />
+        <link href="~/lib/sb-admin-2/css/sb-admin-2.css" rel="stylesheet" />
+
+        <link href="~/lib/kendo-ui/styles/kendo.common-bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/kendo-ui/styles/kendo.bootstrap.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/css/sb-admin-2.min.css" rel="stylesheet" />
+        <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/css/custom.min.css" rel="stylesheet" />
     </environment>
-    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Rex3</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
-            </div>
+    <div id="wrapper">
+        <!-- Navigation -->
+        @Html.Partial("_Navigation")
+
+        <div id="page-wrapper">
+            @RenderBody()
         </div>
+        <!-- /#page-wrapper -->
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - Rex3</p>
-        </footer>
+    <!-- /#wrapper -->
+
+    <div id="page_footer">
+        @if (IsSectionDefined("Footer"))
+            {
+                RenderSection("Footer", false);
+            }
+            else
+            {
+            <div class="foot_left">Account Executive Dashboard - Version 2.01</div>
+                <div class="foot_right">Copyright &copy; 2017. Xerox Corporation. All Rights Reserved.</div>
+        }
+
     </div>
+
+
 
     <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/kendo-ui/js/kendo.all.js"></script>
+        <script src="~/lib/kendo-ui/js/kendo.aspnetmvc.min.js"></script>
+        <script src="~/lib/morris.js/morris.js"></script>
+        <script src="~/lib/sb-admin-2/js/sb-admin-2.js"></script>
+        <script src="~/js/app/SiteCommon.js"></script>
+        <!-- Custom Theme JavaScript -->
+
     </environment>
     <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-1.10.2.min.js"></script>
+        <script src="~/js/jquery.validate.min.js"></script>
+        <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
     </environment>
 
-    @RenderSection("scripts", required: false)
+    <!-- Page-Level Scripts -->
+    @RenderSection("scripts", false);
 </body>
 </html>

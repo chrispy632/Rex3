@@ -1,0 +1,76 @@
+﻿
+<!-- Navigation -->
+    <div class="">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://xerox.com">
+                        <img src="~/images/X_Logo.png" alt="Xerox">
+                    </a>
+                </div>
+                <div id="navbar2" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </nav>
+    </div>
+    <!-- /.navbar-header -->
+
+    <!-- /.navbar-static-side -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <span><i class="fa fa-edit fa-fw"></i> Clients</span>
+                    <ul class="nav nav-second-level in">
+                        <li>
+                            @Html.ActionLink("New Client", "NewClient", "Client")
+                        </li>
+                        <li>
+                            <a asp-controller="Client" asp-action="List">All Clients</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+
+                    <span><i class="fa fa-edit fa-fw"></i> Orders</span>
+                    <ul class="nav nav-second-level in">
+                        <li>
+                            <a href="#">New Order</a>
+                        </li>
+                        <li>
+                            <a href="#">In Progress Orders</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Order History</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span><i class="fa fa-edit fa-fw"></i> Inventory</span>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">New Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Current Inventory</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div> <!-- /.navbar-static-side -->
+

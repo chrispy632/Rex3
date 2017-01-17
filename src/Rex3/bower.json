@@ -6,7 +6,10 @@
     "jquery": "2.2.0",
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
-    "kendo-ui-core": "2016.3.1306"
+    "kendo-ui-core": "2016.3.1306",
+    "font-awesome": "4.6.1",
+    "morris.js": "0.5.1",
+    "sb-admin-2": "*"
   },
   "resolutions": {
     "jquery": ">= 1.7.2"
