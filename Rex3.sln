@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C12EB987-C046-43CA-AEA9-1D1ABBB03188}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80A498EC-CEDA-4693-AC9C-6B02DB2C0E1F}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Rex3", "src\Rex3\Rex3.xproj", "{0FC2F5D7-36A6-48C5-A935-F130C76525C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FC2F5D7-36A6-48C5-A935-F130C76525C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FC2F5D7-36A6-48C5-A935-F130C76525C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FC2F5D7-36A6-48C5-A935-F130C76525C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FC2F5D7-36A6-48C5-A935-F130C76525C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0FC2F5D7-36A6-48C5-A935-F130C76525C0} = {C12EB987-C046-43CA-AEA9-1D1ABBB03188}
+	EndGlobalSection
+EndGlobal
