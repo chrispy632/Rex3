@@ -7,16 +7,31 @@ namespace Rex3.Models
     {
         public RexContext(DbContextOptions<RexContext> options) : base(options)
         {
-            // TODO: #639
-            //ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            modelBuilder.Entity<UserRole>()
+            base.OnModelCreating(builder);
+
+
+            builder.Entity<UserRole>().HasKey(x => new { x.UserId, x.RoleId });
+
+            builder.Entity<UserRole>()
+                .HasOne(m => m.User)
+                .WithMany(ma => ma.UserRoles)
+                .HasForeignKey(m => m.UserId);
+
+            builder.Entity<UserRole>()
+                .HasOne(m => m.Role)
+                .WithMany(ma => ma.UserRoles)
+                .HasForeignKey(a => a.RoleId);
+
+
+            builder.Entity<UserRole>()
                 .HasKey(c => new { c.UserId, c.RoleId });
 
-            base.OnModelCreating(modelBuilder);
+
         }
 
         public DbSet<Account> Accounts { get; set; }
