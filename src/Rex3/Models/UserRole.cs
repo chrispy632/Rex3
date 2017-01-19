@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rex3.Models
 {
+
     public class UserRole
     {
         public string UserId { get; set; }

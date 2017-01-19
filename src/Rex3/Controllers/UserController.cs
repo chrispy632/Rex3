@@ -19,12 +19,26 @@ namespace Rex3.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _userService.GetUsers());
+            var model = await _userService.GetUsers();
+            if (model == null)
+            {
+                return NotFound();
+            }
+            return View(model);
         }
 
         public IActionResult Details(string userId)
         {
+            if (userId == null || userId =="")
+            {
+                return NotFound();
+            }
+
             var model = _userService.GetUserDetails(userId);
+            if (model == null)
+            {
+                return NotFound();
+            }
             return View(model);
         }
 

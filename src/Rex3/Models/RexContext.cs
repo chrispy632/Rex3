@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Rex3.Models
 {
@@ -10,33 +11,32 @@ namespace Rex3.Models
 
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-
-            builder.Entity<UserRole>().HasKey(x => new { x.UserId, x.RoleId });
-
-            builder.Entity<UserRole>()
-                .HasOne(m => m.User)
-                .WithMany(ma => ma.UserRoles)
-                .HasForeignKey(m => m.UserId);
-
-            builder.Entity<UserRole>()
-                .HasOne(m => m.Role)
-                .WithMany(ma => ma.UserRoles)
-                .HasForeignKey(a => a.RoleId);
-
-
-            builder.Entity<UserRole>()
-                .HasKey(c => new { c.UserId, c.RoleId });
-
-
-        }
-
         public DbSet<Account> Accounts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Role>().ToTable("Roles");
+            builder.Entity<User>().ToTable("Users");
+            builder.Entity<UserRole>().ToTable("UserRole");
+
+            builder.Entity("Rex3.Models.UserRole", b =>
+            {
+                b.HasKey("UserId","RoleId");
+
+                b.HasOne("Rex3.Models.User", "User")
+                    .WithMany("UserRoles")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.HasOne("Rex3.Models.Role", "Role")
+                    .WithMany("UserRoles")
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+        }
+
     }
 }

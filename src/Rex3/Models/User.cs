@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rex3.Models
 {
-    [Table("Users")]
+
     public class User
     {
         [Key]

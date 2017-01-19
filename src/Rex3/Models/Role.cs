@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Rex3.Models
 {
-    [Table("Roles")]
+
     public class Role
     {
-        [Key]
-        public int RoleId { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Priority Order")]
         public int PriorityOrder { get; set; }
         public string Title { get; set; }

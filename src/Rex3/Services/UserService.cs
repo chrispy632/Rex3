@@ -17,14 +17,17 @@ namespace Rex3.Services
 
         public async Task<List<User>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            var result = await _context.Users
+                .Include(ur => ur.UserRoles)
+                    .ThenInclude( r => r.Role)
+                .AsNoTracking()
+                .ToListAsync();
+            return result;
         }
         public User GetUserDetails(string UserId)
         {
             var result = _context.Users
                 .Where(a => a.UserId == UserId)
-                .Include(i => i.UserRoles)
-                .Include(i => i.UserRoles.FirstOrDefault().Role)
                 .FirstOrDefault();
 
             if (result == null)
