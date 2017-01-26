@@ -29,6 +29,6 @@ namespace Rex3.Models
         public string UpdatedId { get; set; }
         public DateTime? UpdatedDt { get; set; }
 
-        public List<UserRole> UserRoles { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

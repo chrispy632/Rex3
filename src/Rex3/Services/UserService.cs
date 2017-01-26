@@ -19,16 +19,17 @@ namespace Rex3.Services
         {
             var result = await _context.Users
                 .Include(ur => ur.UserRoles)
-                    .ThenInclude( r => r.Role)
-                .AsNoTracking()
+                    .ThenInclude( ur => ur.Role)
+                    .OrderByDescending(o => o.Name)
                 .ToListAsync();
+
             return result;
         }
-        public User GetUserDetails(string UserId)
+        public async Task<User> GetUserDetails(string UserId)
         {
-            var result = _context.Users
+            var result = await _context.Users
                 .Where(a => a.UserId == UserId)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             if (result == null)
             {
@@ -37,6 +38,30 @@ namespace Rex3.Services
                 return user;
             }
            return result;
+        }
+
+        public async Task<User> AddUser(User user)
+        {
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<int> DeleteUser(User user)
+        {
+            int error_code = 0;
+            try
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                error_code = 1;
+            }
+
+            return error_code;
         }
     }
 }

@@ -15,6 +15,8 @@ namespace Rex3.Services
         /// List of users
         /// </returns>
         Task<List<User>> GetUsers();
-        User GetUserDetails(string UserId);
+        Task<User> GetUserDetails(string UserId);
+        Task<User> AddUser(User user);
+        Task<int> DeleteUser(User user);
     }
 }

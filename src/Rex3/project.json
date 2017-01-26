@@ -1,9 +1,6 @@
 {
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.1",
-      "type": "platform"
-    },
+    "Microsoft.NETCore.App": "1.1.0",
     "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
@@ -22,13 +19,12 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.1.0-preview4-final",
       "type": "build"
     },
     "Microsoft.AspNetCore.Identity": "1.0.0"
-
   },
 
   "tools": {
@@ -56,6 +52,10 @@
     "configProperties": {
       "System.GC.Server": true
     }
+  },
+
+  "runtimes": {
+    "win10-x64": {} /* one or more RIDs */
   },
 
   "publishOptions": {

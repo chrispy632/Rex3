@@ -47,6 +47,7 @@ namespace Rex3
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddSingleton<IFormDataService, FormDataService>();
             services.AddMvc();
         }
 

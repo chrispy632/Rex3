@@ -1,0 +1,76 @@
+﻿@model Rex3.Models.User 
+@inject Rex3.Services.IFormDataService FormDataHelper
+@{
+    ViewData["Title"] = "User Edit";
+}
+
+<h2>Maintenance - User Details</h2><br />
+
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="UserId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CountryCode" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(Model => Model.CountryCode,
+                    FormDataHelper.GetCountries().Select(s =>
+                    new SelectListItem { Text = s.Name, Value = s.CountryCode }),
+                    new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="IsActive" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsActive" class="checkbox" type="checkbox" />
+                        <span asp-validation-for="IsActive" class="text-danger"></span>&nbsp;
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+                <a asp-action="Index" class="btn btn-default">Back to List </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

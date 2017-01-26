@@ -24,7 +24,7 @@ namespace Rex3.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var userId = _currentUserService.GetUserName();
-            var user = _userService.GetUserDetails(userId);
+            var user = await _userService.GetUserDetails(userId);
             return View(user);
         }
     }
