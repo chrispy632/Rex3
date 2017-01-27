@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Rex3.Models;
 using Rex3.Services;
+using Rex3.ViewModels;
 
 namespace Rex3.Controllers
 {
@@ -29,6 +30,24 @@ namespace Rex3.Controllers
             return View(model);
         }
 
+
+        public IActionResult List()
+        {
+            return View();
+        }
+
+        // GET: /Client/GetClients
+        public IActionResult GetUsers()
+        {
+            var model = _userService.GetUserListVM();
+            if (model == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(model);
+
+        }
+
         public async Task<IActionResult> Details(string userId)
         {
             if (userId == null || userId =="")
@@ -51,64 +70,51 @@ namespace Rex3.Controllers
             {
                 return NotFound();
             }
-
-            var model = await _userService.GetUserDetails(userId); 
+            var currentUserId = _currentUser.GetUserName();
+            var model = await _userService.GetUserDetailsVM(userId, currentUserId); 
             if (model == null)
             {
                 return NotFound();
             }
 
-            if (model.CountryCode == null || model.CountryCode == "")
-            {
-                model.CountryCode = "";
-            }
-            else {
-                model.CountryCode = model.CountryCode.TrimEnd();
-            }            
-
             return View(model);
         }
 
         [HttpPost, ActionName("Edit")]
-        public async Task<IActionResult> EditPost([Bind("UserId,Name,IsActive,email,CountryCode,CreatedDt,CreatedId")] User user)
+        public async Task<IActionResult> EditPost([Bind("UserId,Name,IsActive,email,CountryCode,CreatedDt,CreatedId, RoleId")] UserViewModel userVM)
         {
-            if (userId == null || userId == "")
+            if (userVM.UserId == null || userVM.UserId == "")
             {
                 return NotFound();
             }
-            var studentToUpdate = await _context.Students.SingleOrDefaultAsync(s => s.ID == id);
-            if (await TryUpdateModelAsync<Student>(
-                studentToUpdate,
-                "",
-                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
-            {
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("Index");
-                }
-                catch (DbUpdateException /* ex */)
-                {
-                    //Log the error (uncomment ex variable name and write a log.)
-                    ModelState.AddModelError("", "Unable to save changes. " +
-                        "Try again, and if the problem persists, " +
-                        "see your system administrator.");
-                }
-            }
-            return View(studentToUpdate);
+            var currentUserId = _currentUser.GetUserName();         
+            await _userService.UpdateAsyncVM(userVM, currentUserId);
+            
+            return RedirectToAction("Index"); 
         }
 
         public IActionResult Create()
         {
-            var user = new User();
-            user.CreatedDt = System.DateTime.Now;
-            user.CreatedId = _currentUser.GetUserName();
-            user.IsActive = true;
-            return View(user);
+            var currentUserId = _currentUser.GetUserName();
+            UserViewModel modelVM = new UserViewModel
+            {
+                UserId = "",
+                Name = "",
+                email = "@xerox.com",
+                CountryCode = "",
+                RoleId = 10,
+                IsActive = true,
+                CreatedDt = DateTime.Now,
+                CreatedId = currentUserId,
+                UpdatedDt = DateTime.Now,
+                UpdatedId = currentUserId
+            };
+
+            return View(modelVM);
         }
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,Name,IsActive,email,CountryCode,CreatedDt,CreatedId")] User user)
+        public async Task<IActionResult> Create([Bind("UserId,Name,IsActive,email,CountryCode,CreatedDt,CreatedId,RoleId")] User user)
         {
             if (ModelState.IsValid)
             {

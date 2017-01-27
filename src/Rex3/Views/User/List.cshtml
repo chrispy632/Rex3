@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "List";
+}
+
+    <div class="row">
+        <h2>User List</h2>
+        <div id="userList"></div>
+    </div>
+
+<script type="text/x-kendo-template" id="template">
+    <div class='account-details'>
+                <ul>
+                    <li><label>Email: </label>&nbsp;        #= email #</li>
+                    <li><label>Created: </label>&nbsp;    #=  kendo.toString(kendo.parseDate(data.createdDt), "MMM-dd-yyyy") #</li>
+                    <li><label>Modified: </label>&nbsp;    #=  kendo.toString(kendo.parseDate(data.updatedDt), "MMM-dd-yyyy") #</li>
+                </ul>
+    </div>
+
+</script>
+
+        @section scripts {
+            <script src="~/js/app/views/user/Index.js"></script>
+        }
+
+

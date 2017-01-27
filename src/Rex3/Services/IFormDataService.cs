@@ -7,5 +7,6 @@ namespace Rex3.Services
     public interface IFormDataService
     {
         List<Country> GetCountries();
+        List<Role> GetRoles();
     }
 }

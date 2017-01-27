@@ -25,6 +25,14 @@ namespace Rex3.Services
 
             return items;
         }
+        public List<Role> GetRoles()
+        {
+            var items = context.Roles
+                .OrderBy(o => o.PriorityOrder)
+                .ToList();
+
+            return items;
+        }
     }
 
 }

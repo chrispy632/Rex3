@@ -4,6 +4,7 @@
 /// <reference path="js/app/SiteCommon.js" />
 /// <reference path="js/app/utils.js" />
 /// <reference path="js/app/views/client/list.js" />
+/// <reference path="js/app/views/user/Edit.js" />
 /// <reference path="js/app/views/user/list.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/eve-raphael/eve.js" />

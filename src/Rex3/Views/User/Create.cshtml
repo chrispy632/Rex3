@@ -1,4 +1,4 @@
-﻿@model Rex3.Models.User 
+﻿@model Rex3.ViewModels.UserViewModel 
 @inject Rex3.Services.IFormDataService FormDataHelper
 @{
     ViewData["Title"] = "User Create";
@@ -43,6 +43,15 @@
                 @Html.DropDownListFor(Model => Model.CountryCode,
                     FormDataHelper.GetCountries().Select(s =>
                     new SelectListItem { Text = s.Name, Value = s.CountryCode }),
+                    new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RoleId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(Model => Model.RoleId,
+                    FormDataHelper.GetRoles().Select(s =>
+                    new SelectListItem { Text = s.Title, Value = s.Id.ToString() }),
                     new { @class = "form-control" })
             </div>
         </div>

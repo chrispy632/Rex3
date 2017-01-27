@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Rex3.ViewModels;
 
 namespace Rex3.Models
 {
@@ -13,6 +14,7 @@ namespace Rex3.Models
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserListVM> UserListVM { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Country> Countries { get; set; }
